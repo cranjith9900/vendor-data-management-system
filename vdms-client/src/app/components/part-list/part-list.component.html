@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Parts</h2>
+    <a class="btn btn-primary" routerLink="/parts/new">+ Add Part</a>
+  </div>
+
+  <div class="input-group mb-3" style="max-width: 400px;">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search by part number or description"
+      [(ngModel)]="search"
+      (keyup.enter)="load()"
+    />
+    <button class="btn btn-outline-secondary" (click)="load()">Search</button>
+  </div>
+
+  <div class="alert alert-danger" *ngIf="error">{{ error }}</div>
+  <div *ngIf="loading">Loading...</div>
+
+  <table class="table table-striped" *ngIf="!loading && parts.length">
+    <thead>
+      <tr>
+        <th>Part #</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Vendor</th>
+        <th>Unit Price</th>
+        <th>Qty On Hand</th>
+        <th>Location</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of parts">
+        <td>{{ p.partNumber }}</td>
+        <td>{{ p.description }}</td>
+        <td>{{ p.category }}</td>
+        <td>{{ p.vendorName }}</td>
+        <td>{{ p.unitPrice | currency }}</td>
+        <td>{{ p.quantityOnHand }}</td>
+        <td>{{ p.warehouseLocation }}</td>
+        <td>
+          <a class="btn btn-sm btn-outline-secondary me-1" [routerLink]="['/parts', p.id, 'edit']">Edit</a>
+          <button class="btn btn-sm btn-outline-danger" (click)="deletePart(p.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="!loading && !parts.length">No parts found.</p>
+</div>

@@ -1,0 +1,16 @@
+<div class="container">
+  <h2 class="mb-3">Reports &amp; Analytics</h2>
+  <div class="alert alert-danger" *ngIf="error">{{ error }}</div>
+
+  <div class="row g-4">
+    <div class="col-md-6">
+      <canvas id="inventoryChart"></canvas>
+    </div>
+    <div class="col-md-6">
+      <canvas id="vendorChart"></canvas>
+    </div>
+    <div class="col-12">
+      <canvas id="trendChart"></canvas>
+    </div>
+  </div>
+</div>

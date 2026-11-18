@@ -1,0 +1,9 @@
+# .NET
+server/VDMS.Api/bin/
+server/VDMS.Api/obj/
+server/VDMS.Api/vdms.db
+
+# Angular
+vdms-client/node_modules/
+vdms-client/dist/
+vdms-client/.angular/

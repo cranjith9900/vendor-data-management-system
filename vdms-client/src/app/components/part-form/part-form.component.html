@@ -1,0 +1,42 @@
+<div class="container" style="max-width: 600px;">
+  <h2>{{ id ? 'Edit Part' : 'Add Part' }}</h2>
+  <div class="alert alert-danger" *ngIf="error">{{ error }}</div>
+
+  <form (ngSubmit)="save()">
+    <div class="mb-3">
+      <label class="form-label">Part Number</label>
+      <input class="form-control" [(ngModel)]="model.partNumber" name="partNumber" required />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <input class="form-control" [(ngModel)]="model.description" name="description" required />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Category</label>
+      <input class="form-control" [(ngModel)]="model.category" name="category" required />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Vendor</label>
+      <select class="form-select" [(ngModel)]="model.vendorId" name="vendorId" required>
+        <option *ngFor="let v of vendors" [value]="v.id">{{ v.name }}</option>
+      </select>
+    </div>
+    <div class="row">
+      <div class="col mb-3">
+        <label class="form-label">Unit Price</label>
+        <input type="number" step="0.01" class="form-control" [(ngModel)]="model.unitPrice" name="unitPrice" required />
+      </div>
+      <div class="col mb-3">
+        <label class="form-label">Quantity On Hand</label>
+        <input type="number" class="form-control" [(ngModel)]="model.quantityOnHand" name="quantityOnHand" required />
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Warehouse Location</label>
+      <input class="form-control" [(ngModel)]="model.warehouseLocation" name="warehouseLocation" required />
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="saving">Save</button>
+    <a class="btn btn-link" routerLink="/parts">Cancel</a>
+  </form>
+</div>

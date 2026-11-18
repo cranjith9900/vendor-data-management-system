@@ -1,0 +1,36 @@
+<div class="container" style="max-width: 600px;">
+  <h2>New Transaction</h2>
+  <div class="alert alert-danger" *ngIf="error">{{ error }}</div>
+
+  <form (ngSubmit)="save()">
+    <div class="mb-3">
+      <label class="form-label">Part</label>
+      <select class="form-select" [(ngModel)]="model.partId" name="partId" required>
+        <option *ngFor="let p of parts" [value]="p.id">{{ p.partNumber }} - {{ p.description }}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Type</label>
+      <select class="form-select" [(ngModel)]="model.type" name="type" required>
+        <option value="Inbound">Inbound</option>
+        <option value="Outbound">Outbound</option>
+        <option value="Adjustment">Adjustment</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Quantity</label>
+      <input type="number" class="form-control" [(ngModel)]="model.quantity" name="quantity" required min="1" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Reference</label>
+      <input class="form-control" [(ngModel)]="model.reference" name="reference" placeholder="PO number, order #, etc." />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Notes</label>
+      <textarea class="form-control" [(ngModel)]="model.notes" name="notes"></textarea>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="saving">Save</button>
+    <a class="btn btn-link" routerLink="/transactions">Cancel</a>
+  </form>
+</div>
